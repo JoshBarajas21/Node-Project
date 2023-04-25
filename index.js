@@ -17,12 +17,28 @@ global["__filename"] = path.join(path.basename(new URL(import.meta.url).pathname
 const server = http.createServer( ( req, res )=> {
     //Toda la lógica del server
     // 1. Respondiendo al cliente (res)
-    res.write("Hello from the Joshua's server ...  \n");
+    /* res.write("Hello from the Joshua's server ...  \n"); */
     /* Funcionan con commonjs, si usamos module, tendremos que usar el scope global */
-    res.write(`__dirname: ${__dirname} \n`);
-    res.write(`__filename: ${__filename} \n`);
+/*     res.write(`__dirname: ${__dirname} \n`);
+    res.write(`__filename: ${__filename} \n`); */
+
+    res.setHeader('Content-Type', 'text/html');
+    res.write("<html>");
+    res.write("<head>");
+    res.write("<title> My App </title>");   
+    res.write("</head>");
+    res.write("<body>")
+    res.write("<h1> Hello from my server ... </h1>")
+    res.write("</body>")
+    res.write("</html>");
+    console.log("---------------------------------")
+    /* console.log(req) */
+
+    /* console.log(`📣 CLIENT - REQUEST: ${req.method} ${req.url}`) */
+    console.log(`📣 Contestando recurso: ${req.method} ${req.url}`)
     
     //2. Cerrar la conexión
+    console.log(`📣 Cerrando la conexión...`)
     res.end();
 } ); //const porque no va a cambiar el valor
 
